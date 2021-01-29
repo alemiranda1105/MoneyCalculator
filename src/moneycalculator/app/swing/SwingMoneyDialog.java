@@ -1,4 +1,4 @@
-package moneycalculator.ui.swing;
+package moneycalculator.app.swing;
 
 import java.awt.Component;
 import java.awt.PopupMenu;
@@ -70,19 +70,16 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
                 try {
                     amount = document.getText(0, document.getLength());
                 }
-                catch (BadLocationException ex) {
+                catch(BadLocationException ex) {
                 }
             }
         };
     }
 
     private ItemListener currencyChanged() {
-        return new ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.DESELECTED) return;
-                currency = (Currency) e.getItem();
-            }
+        return e -> {
+            if (e.getStateChange() == ItemEvent.DESELECTED) return;
+            currency = (Currency) e.getItem();
         };
     }
 }

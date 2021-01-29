@@ -10,7 +10,7 @@ public class CalculateCommand implements Command {
     private final MoneyDialog moneyDialog;
     private final MoneyDisplay moneyDisplay;
     private final ExchangeRateLoader loader;
-    private Currency eur = new Currency ("EUR", "Euro", "€");
+    private final Currency EUR = new Currency ("EUR", "Euro", "€");
 
 
     public CalculateCommand(MoneyDialog moneyDialog, MoneyDisplay moneyDisplay, ExchangeRateLoader loader) {
@@ -30,10 +30,10 @@ public class CalculateCommand implements Command {
     }
 
     private Money exchange(Money money) {
-        return new Money(eur, money.getAmount() * rateOf(money.getCurrency()));
+        return new Money(EUR, money.getAmount() * rateOf(money.getCurrency()));
     }
 
     private double rateOf(Currency currency) {
-        return loader.load(currency, eur).getAmount();
+        return loader.load(currency, EUR).getAmount();
     }
 }

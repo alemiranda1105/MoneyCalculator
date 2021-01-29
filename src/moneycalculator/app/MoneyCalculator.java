@@ -1,5 +1,6 @@
 package moneycalculator.app;
 
+import moneycalculator.app.swing.MoneyCalculatorFrame;
 import moneycalculator.control.CalculateCommand;
 import moneycalculator.persistence.CurrencyListLoader;
 import moneycalculator.persistence.ExchangeRateLoader;

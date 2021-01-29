@@ -1,6 +1,5 @@
-package moneycalculator.app;
+package moneycalculator.app.swing;
 
-import moneycalculator.app.swing.SwingMoneyDisplay;
 import moneycalculator.control.Command;
 import moneycalculator.model.Currency;
 import moneycalculator.view.MoneyDialog;
@@ -8,7 +7,6 @@ import moneycalculator.view.MoneyDisplay;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +44,7 @@ public class MoneyCalculatorFrame extends JFrame {
     }
 
     private Component moneyDialog() {
-        moneycalculator.ui.swing.SwingMoneyDialog dialog = new moneycalculator.ui.swing.SwingMoneyDialog(currencies);
+        SwingMoneyDialog dialog = new SwingMoneyDialog(currencies);
         moneyDialog = dialog;
         return dialog;
     }
@@ -70,11 +68,6 @@ public class MoneyCalculatorFrame extends JFrame {
     }
 
     private ActionListener calculate() {
-        return new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                commands.get("Calculate").execute();
-            }
-        };
+        return e -> commands.get("Calculate").execute();
     }
 }

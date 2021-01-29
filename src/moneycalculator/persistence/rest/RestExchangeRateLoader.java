@@ -9,19 +9,19 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class RestExchangeRateLoader implements ExchangeRateLoader {
+
     @Override
     public ExchangeRate load(Currency from, Currency to) {
         try {
             return new ExchangeRate(from, to, read(from.getCode(), to.getCode()));
-        } catch (IOException ex) {
+        } catch(IOException ex) {
             return null;
         }
     }
 
     private double read(String from, String to) throws IOException {
         String line = read(new URL("https://free.currconv.com/api/v7/convert?q="+from+"_"+to+"&compact=ultra&apiKey=ddd381c0195c88cd0c0e"));
-        Double exchangeRate=Double.parseDouble(line.substring(line.indexOf(to)+5,line.indexOf("}")));
-        return exchangeRate;
+        return Double.parseDouble(line.substring(line.indexOf(to)+5,line.indexOf("}")));
     }
 
     private String read(URL url) throws IOException {

@@ -17,17 +17,16 @@ public class FileCurrencyListLoader implements CurrencyListLoader {
     @Override
     public List<Currency> load() {
         List<Currency> result = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
-            while (true) {
-                String line = reader.readLine();
-                if (line == null) break;
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while((line = reader.readLine()) != null) {
                 String[] split = line.split(",");
                 result.add(new Currency(split[0], split[1], split[2]));
             }
-            reader.close();
-        } catch (IOException ex) {
+            return result;
+        } catch(IOException ex) {
             System.out.println(ex.getMessage());
         }
-        return result;
+        return null;
     }
 }
